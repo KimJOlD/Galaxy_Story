@@ -13,12 +13,7 @@ public class ShopManager : MonoBehaviour
     public GameObject[] shopPanelsGO;
     public ShopTemplate[] shopPanels;
     public Button[] myPurchaseBtns;
-    public void Addcoins()
-    {
-        coins++;
-        coinUI.text = "" + coins.ToString();
-        CheckPurchaseable();
-    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +23,7 @@ public class ShopManager : MonoBehaviour
         coinUI.text = "" + coins.ToString();
         LoadPanels();
         CheckPurchaseable();
+
     }
 
     // Update is called once per frame
@@ -35,12 +31,12 @@ public class ShopManager : MonoBehaviour
     {
         
     }
-    //public void Addcoins()
-    //{
-    //    coins++;
-    //    coinUI.text = "" + coins.ToString();
-    //    CheckPurchaseable();
-    //}
+    public void Addcoins()
+    {
+        coins++;
+        coinUI.text = "" + coins.ToString();
+        CheckPurchaseable();
+    }
 
     public void CheckPurchaseable()
     {
@@ -50,10 +46,18 @@ public class ShopManager : MonoBehaviour
                 myPurchaseBtns[i].interactable = true;
             else
                 myPurchaseBtns[i].interactable = false;
+           
         }
+        
+
     }
 
+    //void DisablePurchaseButton()
+    //{
+    //    myPurchaseBtns.interactable = false;
+    //    myPurchaseBtns.trasform
 
+    //}
 
     public void PurchaseItem(int btnNo)
     {
