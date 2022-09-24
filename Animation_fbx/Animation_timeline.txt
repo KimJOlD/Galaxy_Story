@@ -1,0 +1,10 @@
+1~17 : idle
+
+30~50 : walk
+
+60~80 : use gun
+
+90~170 : ceremony
+
+Galaxy_animation_edit 파일로 받아야해
+선영이가 손맵으로 그린 텍스쳐파일도 같이 올렸당
