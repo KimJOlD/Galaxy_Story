@@ -4,23 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class ShopManager : MonoBehaviour
 {
-    //public int coins;
-    //public TMP_Text coinUI;
-    //public ShopItemSO[] shopItemSO;
-    //public GameObject[] shopPanelsGO;
-    //public ShopTemplate[] shopPanels;
-    //public Button[] myPurchaseBtns;
+    public int coins;
+    public TMP_Text coinUI;
+    public ShopItemSO[] shopItemsSO;
+    public GameObject[] shopPanelsGO;
+    public ShopTemplate[] shopPanels;
+    public Button[] myPurchaseBtns;
+    public void Addcoins()
+    {
+        coins++;
+        coinUI.text = "" + coins.ToString();
+        CheckPurchaseable();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //for (int 1 - 0; int < shopItemSO.Length; 1++)
-        //    shopPanelsGO[i].SetActive(true);
-        //coinUI.text = "coins:" + coins.ToString();
-        //LoadPanels();
-        //CheekPurchaseable();
+        for (int i = 0; i < shopItemsSO.Length; i++)
+            shopPanelsGO[i].SetActive(true);
+        coinUI.text = "" + coins.ToString();
+        LoadPanels();
+        CheckPurchaseable();
     }
 
     // Update is called once per frame
@@ -28,10 +35,46 @@ public class ShopManager : MonoBehaviour
     {
         
     }
-    public void Addcoins()
+    //public void Addcoins()
+    //{
+    //    coins++;
+    //    coinUI.text = "" + coins.ToString();
+    //    CheckPurchaseable();
+    //}
+
+    public void CheckPurchaseable()
     {
-        //coins++;
-        //coinUI.text = "Coins:" + coins.ToString();
-        //CheckPurchaseable();
+        for (int i = 0; i < shopItemsSO.Length; i++)
+        {
+            if (coins >= shopItemsSO[i].basecost)
+                myPurchaseBtns[i].interactable = true;
+            else
+                myPurchaseBtns[i].interactable = false;
+        }
+    }
+
+
+
+    public void PurchaseItem(int btnNo)
+    {
+        if (coins >= shopItemsSO[btnNo].basecost)
+        {
+            coins = coins - shopItemsSO[btnNo].basecost;
+            coinUI.text = "" + coins.ToString();
+            CheckPurchaseable();
+
+        }
+    }
+
+
+    public void LoadPanels()
+    {
+        for (int i = 0; i < shopItemsSO.Length; i++)
+        {
+            shopPanels[i].titleTXt.text = shopItemsSO[i].title;
+            shopPanels[i].descriptionTxt.text = shopItemsSO[i].description;
+            shopPanels[i].costTxt.text = "" + shopItemsSO[i].basecost.ToString();
+
+        }
     }
 }
