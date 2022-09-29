@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class enemy : MonoBehaviour
 {
-    public enum Type { A, B, C};
+    public enum Type { A, B, C, D};
     public Type enemyType;
     public int curHealth;
     public Transform target;
     public gamemanager manager;
+    public DSLManager dslManager;
+    public int money;
 
     public bool isChase;
 
@@ -87,12 +90,23 @@ public class enemy : MonoBehaviour
             {
                 case Type.A:
                     manager.enemyCntA--;
+                    money += 1;
+                    dslManager.LoadMoney(money);
                     break;
                 case Type.B:
                     manager.enemyCntB--;
+                    money += 2;
+                    dslManager.LoadMoney(money);
                     break;
                 case Type.C:
                     manager.enemyCntC--;
+                    money += 3;
+                    dslManager.LoadMoney(money);
+                    break;
+                case Type.D:
+                    manager.enemyCntD--;
+                    money += 4;
+                    dslManager.LoadMoney(money);
                     break;
             }
 

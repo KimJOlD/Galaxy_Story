@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class gamemanager : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class gamemanager : MonoBehaviour
     public Image[] lifeImage;
     public GameObject gameOverSet;
     public GameObject pause;
+    public DSLManager dslManger;
+    public int money;
 
     public int enemyCntA;
     public int enemyCntB;
     public int enemyCntC;
+    public int enemyCntD;
 
     public player player;
 
@@ -32,6 +36,7 @@ public class gamemanager : MonoBehaviour
     void Awake()
     {
         enemyList = new List<int>();
+        money = dslManger.GetMoney();
     }
     void Start()
     {
@@ -59,7 +64,7 @@ public class gamemanager : MonoBehaviour
                     enemyCntC=1;
                     break;
                 case 3:
-                    enemyCntC=1;
+                    enemyCntD=1;
                     break;
             }
         }
@@ -70,6 +75,7 @@ public class gamemanager : MonoBehaviour
             enemy enemy = instantEnemy.GetComponent<enemy>();
             enemy.target = player.transform;
             enemy.manager = this;
+            enemy.money = money;
             enemyList.RemoveAt(0);
 
             yield return new WaitForSeconds(3f);
