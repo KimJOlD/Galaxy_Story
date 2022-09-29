@@ -108,7 +108,7 @@ public class player : MonoBehaviour
         bullets.transform.rotation = bulletPos.transform.rotation;
         Rigidbody bulletRigid = bullets.GetComponent<Rigidbody>();
         bulletRigid.velocity = bulletPos.forward * bulletspeed;
-        Invoke("Trailoff", 0.085f);
+        Invoke("Trailoff", 0.1f);
         curShotDelay = 0;
     }
 

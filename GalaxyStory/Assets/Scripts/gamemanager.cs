@@ -44,7 +44,7 @@ public class gamemanager : MonoBehaviour
     {
         for(int index=0; index < stage; index++)
         {
-            int ran = Random.Range(0, 3);
+            int ran = Random.Range(0, 4);
             enemyList.Add(ran);
 
             switch (ran)
@@ -58,6 +58,9 @@ public class gamemanager : MonoBehaviour
                 case 2:
                     enemyCntC=1;
                     break;
+                case 3:
+                    enemyCntC=1;
+                    break;
             }
         }
         while (enemyList.Count > 0)
@@ -69,7 +72,7 @@ public class gamemanager : MonoBehaviour
             enemy.manager = this;
             enemyList.RemoveAt(0);
 
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(3f);
         }
 
         while (enemyCntA + enemyCntB + enemyCntC > 0)
