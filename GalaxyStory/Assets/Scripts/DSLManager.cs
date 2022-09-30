@@ -35,7 +35,7 @@ public class DSLManager : MonoBehaviour
     }
     private void Start()
     {
-        informs.Add(new Inform(200));
+
     }
 
     public void DataSave() {

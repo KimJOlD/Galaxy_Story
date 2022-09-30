@@ -15,8 +15,8 @@ public class gamemanager : MonoBehaviour
     public Image[] lifeImage;
     public GameObject gameOverSet;
     public GameObject pause;
-    public DSLManager dslManger;
     public int money;
+    public TMP_Text moneyText;
 
     public int enemyCntA;
     public int enemyCntB;
@@ -36,10 +36,10 @@ public class gamemanager : MonoBehaviour
     void Awake()
     {
         enemyList = new List<int>();
-        money = dslManger.GetMoney();
     }
     void Start()
     {
+        money = PlayerPrefs.GetInt("coin");
         Time.timeScale = 1;
         SetResolution();
         StartCoroutine(InBattle());
@@ -55,16 +55,16 @@ public class gamemanager : MonoBehaviour
             switch (ran)
             {
                 case 0:
-                    enemyCntA=1;
+                    enemyCntA +=1;
                     break;
                 case 1:
-                    enemyCntB=1;
+                    enemyCntB +=1;
                     break;
                 case 2:
-                    enemyCntC=1;
+                    enemyCntC +=1;
                     break;
                 case 3:
-                    enemyCntD=1;
+                    enemyCntD +=1;
                     break;
             }
         }
@@ -75,27 +75,24 @@ public class gamemanager : MonoBehaviour
             enemy enemy = instantEnemy.GetComponent<enemy>();
             enemy.target = player.transform;
             enemy.manager = this;
-            enemy.money = money;
             enemyList.RemoveAt(0);
 
             yield return new WaitForSeconds(3f);
         }
 
-        while (enemyCntA + enemyCntB + enemyCntC > 0)
+        while (enemyCntA + enemyCntB + enemyCntC + enemyCntD > 0)
         {
             yield return null;
         }
 
         yield return new WaitForSeconds(1f);
+
         StageClear();
-
-
     }
 
     void Update()
     {
         playTime += Time.deltaTime;
-
 
         Camera.transform.position = target.position + offset;
     }
@@ -133,7 +130,6 @@ public class gamemanager : MonoBehaviour
         {
             lifeImage[index].color = new Color(1, 1, 1, 1);
         }
-     
     }
     public void Pause()
     {
@@ -145,13 +141,14 @@ public class gamemanager : MonoBehaviour
         Time.timeScale = 1;
         pause.SetActive(false);
     }
-
     public void StageClear()
     {
+        PlayerPrefs.SetInt("coin", money);
         SceneManager.LoadScene("Clear");
     }
     public void GameOver()
     {
+        PlayerPrefs.SetInt("coin", money);
         Time.timeScale = 0;
         gameOverSet.SetActive(true);
     }

@@ -536,7 +536,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
@@ -551,10 +551,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.98987037
-  m_Height: 3.4687681
+  m_Radius: 1.0621991
+  m_Height: 3.7882183
   m_Direction: 1
-  m_Center: {x: -0.016875446, y: 1.6944234, z: 0.109348}
+  m_Center: {x: -0.0030391216, y: 1.8553144, z: 0.06535366}
 --- !u!114 &1898861287687124527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +571,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   bulletPos: {fileID: 1898861287752307362}
   manager: {fileID: 0}
-  objectManager: {fileID: 0}
   life: 0
   speed: 5
   bulletspeed: 20

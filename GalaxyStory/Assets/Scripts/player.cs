@@ -10,7 +10,6 @@ public class player : MonoBehaviour
     GameObject[] bullet;
     public Transform bulletPos;
     public gamemanager manager;
-    public objectmanager objectManager;
 
     public int life;
     public float speed;
@@ -116,7 +115,6 @@ public class player : MonoBehaviour
     void Trailoff()
     {
         bullets.GetComponent<TrailRenderer>().enabled = true;
-
     }
 
     void Reload()
@@ -135,10 +133,15 @@ public class player : MonoBehaviour
     {
         
     }
+    public GameObject setting;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("enemy"))
         {
+            if (setting.GetComponent<Settings>().vibrate == true)
+            {
+                Handheld.Vibrate();
+            }
             if (life == 1)
             {
                 manager.GameOver();
@@ -167,5 +170,4 @@ public class player : MonoBehaviour
             mesh.material.color = Color.white;
         }
     }
-    
 }

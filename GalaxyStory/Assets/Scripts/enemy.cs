@@ -11,9 +11,6 @@ public class enemy : MonoBehaviour
     public int curHealth;
     public Transform target;
     public gamemanager manager;
-    public DSLManager dslManager;
-    public int money;
-
     public bool isChase;
 
     Rigidbody rigid;
@@ -51,7 +48,6 @@ public class enemy : MonoBehaviour
             rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
         }
-
     }
     private void FixedUpdate()
     {
@@ -90,29 +86,25 @@ public class enemy : MonoBehaviour
             {
                 case Type.A:
                     manager.enemyCntA--;
-                    money += 1;
-                    dslManager.LoadMoney(money);
+                    manager.money += 1;
                     break;
                 case Type.B:
                     manager.enemyCntB--;
-                    money += 2;
-                    dslManager.LoadMoney(money);
+                    manager.money += 2;
                     break;
                 case Type.C:
                     manager.enemyCntC--;
-                    money += 3;
-                    dslManager.LoadMoney(money);
+                    manager.money += 3;
                     break;
                 case Type.D:
                     manager.enemyCntD--;
-                    money += 4;
-                    dslManager.LoadMoney(money);
+                    manager.money += 4;
                     break;
             }
-
-            reactVec = reactVec.normalized;
-            reactVec += Vector3.up;
-            rigid.AddForce(reactVec * 5, ForceMode.Impulse);
+            
+            //reactVec = reactVec.normalized;
+            //reactVec += Vector3.up;
+            //rigid.AddForce(reactVec * 5, ForceMode.Impulse);
 
             Destroy(gameObject, 3);
         }
